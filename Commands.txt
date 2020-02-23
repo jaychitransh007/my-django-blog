@@ -132,3 +132,18 @@ DYANAMIC DATA IN TEMPLATES
 # We can mix HTML and template tags.
 
 # Everything you put between {% for %} and {% endfor %} will be repeated for each object in the list.
+
+
+--------------------------------------------------
+INSTALL BOOTSTRAP
+# Add follwing commands in HTML files
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+# Finally we will take a closer look at these things we've been calling static files. Static files are all your CSS and images.
+# Their content doesn't depend on the request context and will be the same for every user.
+
+# We also identify elements by the attribute class or the attribute id. Class and id are names you give the element by yourself.
+http://www.w3schools.com/cssref/css_selectors.asp
+
+# "Basic HTML & HTML5" and "Basic CSS" on freeCodeCamp
