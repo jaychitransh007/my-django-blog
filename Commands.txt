@@ -1,0 +1,31 @@
+myvenv\Scripts\activate
+
+django-admin.exe startproject mysite .
+
+python manage.py migrate
+
+python manage.py runserver
+
+# Creating a separate application inside the project
+python manage.py startapp blog
+
+
+# After creating an application, we also need to tell Django that it should use it.
+# We do that in the file mysite/settings.py -- open it in your code editor.
+# We need to find INSTALLED_APPS and add a line containing 'blog.apps.BlogConfig', just above ]. So the final product should look like this:
+
+# First we have to make Django know that we have some changes in our model. (We have just created it!)
+python manage.py makemigrations blog
+
+
+# Django prepared a migration file for us that we now have to apply to our database.
+python manage.py migrate blog
+
+# /admin screen
+# Create Super User
+python manage.py createsuperuser
+
+# More about Django Admin - https://docs.djangoproject.com/en/2.2/ref/contrib/admin/
+
+# Intializing git
+git init

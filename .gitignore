@@ -1,0 +1,10 @@
+*.pyc
+*~
+/.vscode
+__pycache__
+myvenv
+# That file is your local database, where all of your users and posts are stored.
+# We'll follow standard web programming practice, meaning that we'll use separate databases for your local testing site and your live website on PythonAnywhere (the server).
+db.sqlite3
+/static
+.DS_Store
