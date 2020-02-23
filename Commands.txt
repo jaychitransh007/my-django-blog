@@ -29,3 +29,54 @@ python manage.py createsuperuser
 
 # Intializing git
 git init
+
+# Git will track changes to all the files and folders in this directory, but there are some files we want it to ignore.
+# We do this by creating a file called .gitignore in the base directory.
+
+# It's a good idea to use a git status command before git add or whenever you find yourself unsure of what has changed.
+# This will help prevent any surprises from happening, such as wrong files being added or committed.
+# The git status command returns information about any untracked/modified/staged files, the branch status, and much more.
+git status
+
+git add --all .
+
+git commit -m "My Django Girls app, first commit"
+
+# After crating repository on Github, we need to hook up the Git repository on our computer to the one up on GitHub.
+
+#Importing code on PythonAnywhere server
+
+pip3.6 install --user pythonanywhere
+
+pa_autoconfigure_django.py --python=3.6 https://github.com/<your-github-username>/my-first-blog.git
+
+# Steps on running the above commands
+  #1 Downloading your code from GitHub
+  #2 Creating a virtualenv on PythonAnywhere, just like the one on your own computer
+  #3 Updating your settings file with some deployment settings
+  #4 Setting up a database on PythonAnywhere using the manage.py migrate command
+  #5 Setting up your static files (we'll learn about these later)
+  #6 And configuring PythonAnywhere to serve your web app via its API
+# On PythonAnywhere all those steps are automated, but they're the same steps you would have to go through with any other server provider.
+# Also, The main thing to notice right now is that your database on PythonAnywhere is actually totally separate from your database on your own computer,
+  so it can have different posts and admin accounts.
+# As a result, just as we did on your own computer, we need to initialize the admin account with createsuperuser.
+
+python manage.py createsuperuser
+
+#If you see an error while running the pa_autoconfigure_django.py script, here are a few common causes:
+
+  #1 Forgetting to create your PythonAnywhere API token.
+  #2 Making a mistake in your GitHub URL
+  #3 If you see an error saying "Could not find your settings.py",
+    it's probably because you didn't manage to add all your files to Git, and/or you didn't push them up to GitHub successfully. Have another look at the Git section above
+  #4 If you previously signed up for a PythonAnywhere account and had an error with collectstatic,
+    you probably have an older version of SQLite (eg 3.8.2) for your account.
+    In that case, sign up for a new account and try the commands in the PythonAnywhere section above.
+
+# If you see an error when you try to visit your site, the first place to look for some debugging info is in your error log.
+# You'll find a link to this on the PythonAnywhere "Web" page.
+# See if there are any error messages in there; the most recent ones are at the bottom
+
+# This is a common workflow in web development – make changes locally, push those changes to GitHub, and pull your changes down to your live Web server.
+# This allows you to work and experiment without breaking your live Web site. 

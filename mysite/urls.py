@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+# include import the URLs from a different file (blogs)
+from django.urls import path, include
 
+# This line means that for every URL that starts with admin/, Django will find a corresponding view.
+# We want 'http://127.0.0.1:8000/' to be the home page of our blog and to display a list of posts
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('blog.urls'))
 ]
+# Django will now redirect everything that comes into 'http://127.0.0.1:8000/' to blog.urls and looks for further instructions there.
