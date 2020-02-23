@@ -1,3 +1,5 @@
+cd %homepath% /Desktop/Python/learning/django_app
+
 myvenv\Scripts\activate
 
 django-admin.exe startproject mysite .
@@ -42,11 +44,17 @@ git add --all .
 
 git commit -m "My Django Girls app, first commit"
 
+git push
+
+# In Web Server (PythonAnywhere in this case)
+  cd ~/jaychitransh007.pythonanywhere.com
+  git pull
+
 # After crating repository on Github, we need to hook up the Git repository on our computer to the one up on GitHub.
 
 #Importing code on PythonAnywhere server
 
-pip3.6 install --user pythonanywhere
+pip3.6 install pythonanywhere
 
 pa_autoconfigure_django.py --python=3.6 https://github.com/<your-github-username>/my-first-blog.git
 
@@ -79,4 +87,48 @@ python manage.py createsuperuser
 # See if there are any error messages in there; the most recent ones are at the bottom
 
 # This is a common workflow in web development – make changes locally, push those changes to GitHub, and pull your changes down to your live Web server.
-# This allows you to work and experiment without breaking your live Web site. 
+# This allows you to work and experiment without breaking your live Web site.
+
+
+# Django Shell
+python manage.py shell
+from blog.models import Post
+# Create Object
+
+# Importing Users objects as we need this to create the blogs
+from django.contrib.auth.models import User
+User.objects.all()
+me = User.objects.get(username = 'mj')
+Post.objects.create(author=me, title='My Blog using Python', text='Test')
+
+# First get an instance of a post we want to publish
+post = Post.objects.get(title = 'My Blog using Python')
+post.publish()
+
+# Let's say we want to find all posts that user ola authored. We will use filter instead of all
+Post.objects.filter(author = me)
+
+# There are two underscore characters (_) between title and contains.
+# Django's ORM uses this rule to separate field names ("title") and operations or filters ("contains").
+# If you use only one underscore, you'll get an error like "FieldError: Cannot resolve keyword title_contains".
+Post.objects.filter(title__contains='title')
+
+# Ordering Blog posts
+Post.objects.order_by('created_date')
+
+
+-------------------------------------
+DYANAMIC DATA IN TEMPLATES
+# We have different pieces in place: the Post model is defined in models.py, we have post_list in views.py and the template added.
+# views connect models and templates
+#  In our post_list view we will need to take the models we want to display and pass them to the template.
+# In a view we decide what (model) will be displayed in a template
+
+#  the previous chapter we gave our template a list of posts in the posts variable. Now we will display it in HTML.
+# To print a variable in Django templates, we use double curly brackets with the variable's name inside, like this:
+{{ posts }}
+
+# we want the posts to be displayed like the static posts we created earlier in the Introduction to HTML chapter.
+# We can mix HTML and template tags.
+
+# Everything you put between {% for %} and {% endfor %} will be repeated for each object in the list.
